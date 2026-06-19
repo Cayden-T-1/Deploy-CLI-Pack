@@ -1,0 +1,932 @@
+rules: []
+rulesConfigs: []
+pages: []
+resourceServers:
+  - name: Auth0 My Account API
+    identifier: https://dev-nbsatrzqnfxe6wuu.us.auth0.com/me/
+    authorization_policy:
+      policy_id: 019b76da-a800-73c9-b656-b349ae415c17
+    is_system: true
+    proof_of_possession:
+      mechanism: dpop
+      required: false
+    skip_consent_for_verifiable_first_party_clients: true
+    token_lifetime: 600
+  - name: Custom Login Broker API
+    identifier: https://custom-login-broker-api
+    allow_offline_access: false
+    signing_alg: RS256
+    skip_consent_for_verifiable_first_party_clients: true
+    subject_type_authorization:
+      user:
+        policy: require_client_grant
+      client:
+        policy: require_client_grant
+    token_dialect: access_token
+    token_lifetime: 86400
+    token_lifetime_for_web: 7200
+  - name: Okta OIN Express Configuration API
+    identifier: urn:auth0:express-configure
+    is_system: true
+    skip_consent_for_verifiable_first_party_clients: false
+    token_lifetime: 300
+  - name: Tenant A Demo API
+    identifier: https://api.tenant-a.example.com
+    allow_offline_access: false
+    signing_alg: RS256
+    skip_consent_for_verifiable_first_party_clients: true
+    subject_type_authorization:
+      user:
+        policy: require_client_grant
+      client:
+        policy: require_client_grant
+    token_dialect: access_token
+    token_lifetime: 86400
+    token_lifetime_for_web: 7200
+clients:
+  - name: Default App
+    callbacks: []
+    cross_origin_authentication: false
+    custom_login_page_on: true
+    grant_types:
+      - authorization_code
+      - implicit
+      - refresh_token
+      - client_credentials
+    is_first_party: true
+    is_token_endpoint_ip_header_trusted: false
+    jwt_configuration:
+      alg: RS256
+      lifetime_in_seconds: 36000
+      secret_encoded: false
+    oidc_conformant: true
+    refresh_token:
+      expiration_type: non-expiring
+      leeway: 0
+      infinite_token_lifetime: true
+      infinite_idle_token_lifetime: true
+      token_lifetime: 2592000
+      idle_token_lifetime: 1296000
+      rotation_type: non-rotating
+    sso_disabled: false
+  - name: Dmb Login
+    allowed_clients: []
+    allowed_logout_urls:
+      - https://vitejs-vite-yuqv9uk.vercel.app/
+    app_type: spa
+    callbacks:
+      - https://vitejs-vite-yuqv9uk.vercel.app/
+    client_aliases: []
+    cross_origin_authentication: false
+    custom_login_page_on: true
+    grant_types:
+      - authorization_code
+      - implicit
+      - refresh_token
+    initiate_login_uri: https://vitejs-vite-yuqv9uk.vercel.app/
+    is_first_party: true
+    is_token_endpoint_ip_header_trusted: false
+    jwt_configuration:
+      alg: RS256
+      lifetime_in_seconds: 36000
+      secret_encoded: false
+    native_social_login:
+      apple:
+        enabled: false
+      facebook:
+        enabled: false
+    oidc_conformant: true
+    organization_require_behavior: no_prompt
+    refresh_token:
+      expiration_type: expiring
+      leeway: 0
+      token_lifetime: 2592000
+      idle_token_lifetime: 1296000
+      infinite_token_lifetime: false
+      infinite_idle_token_lifetime: false
+      rotation_type: rotating
+    sso: true
+    sso_disabled: false
+    token_endpoint_auth_method: none
+    web_origins:
+      - https://vitejs-vite-yuqv9uk.vercel.app/
+  - name: Tenant Import CLI
+    app_type: non_interactive
+    cross_origin_authentication: false
+    custom_login_page_on: true
+    grant_types:
+      - client_credentials
+    is_first_party: true
+    is_token_endpoint_ip_header_trusted: false
+    jwt_configuration:
+      alg: RS256
+      lifetime_in_seconds: 36000
+      secret_encoded: false
+    oidc_conformant: true
+    refresh_token:
+      expiration_type: non-expiring
+      leeway: 0
+      infinite_token_lifetime: true
+      infinite_idle_token_lifetime: true
+      token_lifetime: 31557600
+      idle_token_lifetime: 2592000
+      rotation_type: non-rotating
+    sso_disabled: false
+    token_endpoint_auth_method: client_secret_post
+  - name: test app
+    app_type: regular_web
+    cross_origin_authentication: false
+    custom_login_page_on: true
+    grant_types:
+      - authorization_code
+      - implicit
+      - refresh_token
+      - client_credentials
+    is_first_party: true
+    is_token_endpoint_ip_header_trusted: false
+    jwt_configuration:
+      alg: RS256
+      lifetime_in_seconds: 36000
+      secret_encoded: false
+    oidc_conformant: true
+    refresh_token:
+      expiration_type: non-expiring
+      leeway: 0
+      infinite_token_lifetime: true
+      infinite_idle_token_lifetime: true
+      token_lifetime: 31557600
+      idle_token_lifetime: 2592000
+      rotation_type: non-rotating
+    sso_disabled: false
+    token_endpoint_auth_method: client_secret_post
+databases:
+  - name: OkbTestDatabase
+    strategy: auth0
+    authentication:
+      active: true
+    connected_accounts:
+      active: false
+    enabled_clients:
+      - Dmb Login
+      - Tenant Import CLI
+    is_domain_connection: true
+    options:
+      mfa:
+        active: true
+        return_enroll_settings: true
+      attributes:
+        email:
+          signup:
+            status: required
+            verification:
+              active: true
+          unique: true
+          identifier:
+            active: true
+          profile_required: true
+          verification_method: otp
+        username:
+          signup:
+            status: required
+          identifier:
+            active: true
+          validation:
+            max_length: 15
+            min_length: 1
+            allowed_types:
+              email: true
+              phone_number: false
+          profile_required: true
+      import_mode: false
+      disable_signup: false
+      passwordPolicy: good
+      passkey_options:
+        challenge_ui: both
+        local_enrollment_enabled: true
+        progressive_enrollment_enabled: true
+      password_history:
+        size: 5
+        enable: true
+      strategy_version: 2
+      password_dictionary:
+        enable: false
+        dictionary: []
+      authentication_methods:
+        passkey:
+          enabled: false
+        password:
+          enabled: true
+          api_behavior: required
+          signup_behavior: allow
+      brute_force_protection: true
+      password_no_personal_info:
+        enable: false
+      password_complexity_options:
+        min_length: 8
+      enabledDatabaseCustomization: false
+    realms:
+      - OkbTestDatabase
+  - name: Username-Password-Authentication
+    strategy: auth0
+    authentication:
+      active: true
+    connected_accounts:
+      active: false
+    enabled_clients:
+      - Default App
+      - Tenant Import CLI
+      - test app
+    is_domain_connection: false
+    options:
+      mfa:
+        active: true
+        return_enroll_settings: true
+      validation:
+        username:
+          max: 15
+          min: 1
+      import_mode: false
+      passwordPolicy: good
+      passkey_options:
+        challenge_ui: both
+        local_enrollment_enabled: true
+        progressive_enrollment_enabled: true
+      password_history:
+        size: 5
+        enable: false
+      strategy_version: 2
+      requires_username: true
+      password_dictionary:
+        enable: false
+        dictionary: []
+      authentication_methods:
+        passkey:
+          enabled: false
+        password:
+          enabled: true
+          api_behavior: required
+          signup_behavior: allow
+      brute_force_protection: true
+      password_no_personal_info:
+        enable: false
+      password_complexity_options:
+        min_length: 8
+      enabledDatabaseCustomization: false
+    realms:
+      - Username-Password-Authentication
+connections:
+  - name: google-oauth2
+    strategy: google-oauth2
+    authentication:
+      active: true
+    connected_accounts:
+      active: false
+    enabled_clients:
+      - Default App
+      - Tenant Import CLI
+      - test app
+    is_domain_connection: false
+    options:
+      email: true
+      scope:
+        - email
+        - profile
+      profile: true
+tenant:
+  client_id_metadata_document_supported: false
+  customize_mfa_in_postlogin_action: false
+  enabled_locales:
+    - en
+  flags:
+    revoke_refresh_token_grant: false
+    disable_clickjack_protection_headers: false
+  friendly_name: Dmb Album Explorer
+  oidc_logout:
+    rp_logout_end_session_endpoint_discovery: true
+  picture_url: https://cdn.corenexis.com/f/ENDIBW5Kz9D.webp
+  resource_parameter_profile: compatibility
+  sandbox_version: '22'
+  support_email: ''
+  support_url: ''
+  universal_login:
+    colors:
+      page_background: '#0A2A84'
+      primary: '#B11226'
+emailProvider: {}
+emailTemplates: []
+clientGrants: []
+guardianFactors:
+  - name: duo
+    enabled: false
+  - name: email
+    enabled: false
+  - name: otp
+    enabled: true
+  - name: push-notification
+    enabled: false
+  - name: recovery-code
+    enabled: false
+  - name: sms
+    enabled: false
+  - name: webauthn-platform
+    enabled: false
+  - name: webauthn-roaming
+    enabled: false
+guardianPolicies:
+  policies: []
+guardianPhoneFactorMessageTypes:
+  message_types: []
+roles: []
+branding:
+  colors:
+    page_background: '#0A2A84'
+    primary: '#B11226'
+  logo_url: https://cdn.corenexis.com/f/ENDIBW5Kz9D.webp
+  templates: []
+phoneProviders: []
+phoneTemplates:
+  - content:
+      syntax: liquid
+      body:
+        text: >-
+          We detected suspicious activity on your account from the ip
+          {{user.source_ip}}{% if user.city %} from {{user.city}},
+          {{user.country}}{% elsif user.country %} from {{user.country}}{% endif
+          %}. Logins from this IP have been blocked on your account. If this is
+          your IP, please reset your password to unblock your account.
+          Otherwise, disregard this message.
+        voice: >-
+          We detected suspicious activity on your account from the ip
+          {{user.source_ip}}{% if user.city %} from {{user.city}},
+          {{user.country}}{% elsif user.country %} from {{user.country}}{% endif
+          %}. Logins from this IP have been blocked on your account. If this is
+          your IP, please reset your password to unblock your account.
+          Otherwise, disregard this message.
+    disabled: false
+    type: blocked_account
+  - content:
+      syntax: liquid
+      body:
+        text: >-
+          {{ code | escape }} is your password change code for {{ friendly_name
+          | escape }}
+        voice: >-
+          Hello. Your password change code for {{ friendly_name | escape }} is
+          {{ pause }} {{ code | escape }}. I repeat, your password change code
+          is {{ pause }} {{ code | escape }}
+      from: ''
+    disabled: false
+    type: change_password
+  - content:
+      syntax: liquid
+      body:
+        text: >-
+          {{ code | escape }} is your verification code for {{ friendly_name |
+          escape }}. Please enter this code to verify your enrollment.
+        voice: >-
+          Hello. Your verification code for {{ friendly_name | escape }} is {{
+          pause }} {{ code | escape }}. I repeat, your verification code is {{
+          pause }} {{ code | escape }}
+      from: ''
+    disabled: false
+    type: otp_enroll
+  - content:
+      syntax: liquid
+      body:
+        text: >-
+          {{ code | escape }} is your verification code for {{ friendly_name |
+          escape }}
+        voice: >-
+          Hello. Your verification code for {{ friendly_name | escape }} is {{
+          pause }} {{ code | escape }}. I repeat, your verification code is {{
+          pause }} {{ code | escape }}
+      from: ''
+    disabled: false
+    type: otp_verify
+prompts:
+  customText: {}
+  identifier_first: true
+  partials: {}
+  screenRenderers: []
+  universal_login_experience: new
+  webauthn_platform_first_factor: false
+actions:
+  - name: email verification1
+    code: ./actions/email verification1/code.js
+    dependencies: []
+    deployed: false
+    runtime: node22
+    secrets: []
+    status: built
+    supported_triggers:
+      - id: pre-user-registration
+        version: v2
+triggers: {}
+organizations:
+  - name: okb
+    branding:
+      colors:
+        page_background: '#841000'
+        primary: '#000d96'
+    client_grants: []
+    connections: []
+    discovery_domains: []
+    display_name: okb
+attackProtection:
+  botDetection:
+    challenge_password_policy: never
+    challenge_passwordless_policy: never
+    challenge_password_reset_policy: never
+    allowlist: []
+    bot_detection_level: medium
+    monitoring_mode_enabled: false
+  breachedPasswordDetection:
+    enabled: false
+    shields: []
+    admin_notification_frequency: []
+    method: standard
+    stage:
+      pre-user-registration:
+        shields: []
+      pre-change-password:
+        shields: []
+  bruteForceProtection:
+    enabled: true
+    shields:
+      - block
+      - user_notification
+    mode: count_per_identifier_and_ip
+    allowlist: []
+    max_attempts: 10
+  captcha:
+    active_provider_id: auth_challenge
+    simple_captcha: {}
+    auth_challenge:
+      fail_open: false
+    recaptcha_v2:
+      site_key: ''
+      secret: '##CAPTCHA_RECAPTCHA_V2_SECRET##'
+    recaptcha_enterprise:
+      site_key: ''
+      project_id: '##CAPTCHA_RECAPTCHA_ENTERPRISE_PROJECT_ID##'
+      api_key: '##CAPTCHA_RECAPTCHA_ENTERPRISE_API_KEY##'
+    hcaptcha:
+      site_key: ''
+      secret: '##CAPTCHA_HCAPTCHA_SECRET##'
+    friendly_captcha:
+      site_key: ''
+      secret: '##CAPTCHA_FRIENDLY_CAPTCHA_SECRET##'
+    arkose:
+      site_key: ''
+      client_subdomain: client-api
+      verify_subdomain: verify-api
+      fail_open: false
+      secret: '##CAPTCHA_ARKOSE_SECRET##'
+  suspiciousIpThrottling:
+    enabled: true
+    shields:
+      - admin_notification
+      - block
+    allowlist: []
+    stage:
+      pre-login:
+        max_attempts: 100
+        rate: 864000
+      pre-user-registration:
+        max_attempts: 50
+        rate: 1200
+      pre-custom-token-exchange:
+        max_attempts: 10
+        rate: 600000
+riskAssessment:
+  new_device:
+    remember_for: 30
+  settings:
+    enabled: false
+logStreams: []
+customDomains: []
+themes: []
+forms: []
+flows: []
+flowVaultConnections: []
+selfServiceProfiles: []
+userAttributeProfiles:
+  - name: Default User Attribute Profile
+    user_attributes:
+      upn:
+        label: UPN
+        description: User Principal Name
+        saml_mapping:
+          - http://schemas.xmlsoap.org/ws/2005/05/identity/claims/upn
+        auth0_mapping: upn
+        profile_required: false
+        strategy_overrides:
+          waad:
+            scim_mapping: userName
+      city:
+        label: City
+        description: City
+        scim_mapping: addresses[type eq "work"].locality
+        auth0_mapping: app_metadata.city
+        profile_required: false
+      name:
+        label: Name
+        description: Full name
+        oidc_mapping:
+          mapping: ${context.tokenset.name}
+          display_name: name
+        saml_mapping:
+          - http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name
+        scim_mapping: displayName
+        auth0_mapping: name
+        profile_required: false
+      email:
+        label: Email
+        description: Email
+        oidc_mapping:
+          mapping: ${context.tokenset.email}
+          display_name: email
+        saml_mapping:
+          - http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress
+        scim_mapping: emails[primary eq true].value
+        auth0_mapping: email
+        profile_required: true
+        strategy_overrides:
+          waad:
+            scim_mapping: emails[type eq "work"].value
+      state:
+        label: State
+        description: State or province
+        scim_mapping: addresses[type eq "work"].region
+        auth0_mapping: app_metadata.state
+        profile_required: false
+      title:
+        label: Title
+        description: Title
+        scim_mapping: title
+        auth0_mapping: app_metadata.title
+        profile_required: false
+      locale:
+        label: Locale
+        description: User locale
+        scim_mapping: locale
+        auth0_mapping: app_metadata.locale
+        profile_required: false
+      blocked:
+        label: Blocked
+        description: User blocked status
+        scim_mapping: active
+        auth0_mapping: blocked
+        profile_required: false
+      country:
+        label: Country
+        description: Country
+        scim_mapping: addresses[type eq "work"].country
+        auth0_mapping: app_metadata.country
+        profile_required: false
+      manager:
+        label: Manager
+        description: Manager
+        scim_mapping: urn:ietf:params:scim:schemas:extension:enterprise:2.0:User.manager
+        auth0_mapping: app_metadata.manager
+        profile_required: false
+      picture:
+        label: Picture
+        description: Profile picture URL
+        oidc_mapping:
+          mapping: ${context.tokenset.picture}
+          display_name: picture
+        scim_mapping: photos[type eq "photo"].value
+        auth0_mapping: picture
+        profile_required: false
+      division:
+        label: Division
+        description: Division
+        scim_mapping: urn:ietf:params:scim:schemas:extension:enterprise:2.0:User.division
+        auth0_mapping: app_metadata.division
+        profile_required: false
+      language:
+        label: Language
+        description: Preferred language
+        scim_mapping: preferredLanguage
+        auth0_mapping: app_metadata.language
+        profile_required: false
+      nickname:
+        label: Nickname
+        description: User nickname
+        oidc_mapping:
+          mapping: ${context.tokenset.nickname}
+          display_name: nickname
+        scim_mapping: nickName
+        auth0_mapping: nickname
+        profile_required: false
+      username:
+        label: Username
+        description: Username
+        oidc_mapping:
+          mapping: ${context.tokenset.preferred_username}
+          display_name: preferred_username
+        auth0_mapping: username
+        profile_required: false
+        strategy_overrides:
+          samlp:
+            scim_mapping: userName
+      role_saml:
+        label: Role
+        description: User role
+        saml_mapping:
+          - http://schemas.microsoft.com/ws/2008/06/identity/claims/role
+        auth0_mapping: role
+        profile_required: false
+      user_type:
+        label: User Type
+        description: User type
+        scim_mapping: userType
+        auth0_mapping: app_metadata.user_type
+        profile_required: false
+      department:
+        label: Department
+        description: Department
+        scim_mapping: urn:ietf:params:scim:schemas:extension:enterprise:2.0:User.department
+        auth0_mapping: app_metadata.department
+        profile_required: false
+      fax_number:
+        label: Fax Number
+        description: Fax number
+        auth0_mapping: app_metadata.fax_number
+        profile_required: false
+        strategy_overrides:
+          waad:
+            scim_mapping: phoneNumbers[type eq "fax"].value
+      given_name:
+        label: Given Name
+        description: First name
+        oidc_mapping:
+          mapping: ${context.tokenset.given_name}
+          display_name: given_name
+        saml_mapping:
+          - http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname
+          - http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name
+        scim_mapping: name.givenName
+        auth0_mapping: given_name
+        profile_required: false
+      roles_scim:
+        label: Roles
+        description: User roles
+        auth0_mapping: app_metadata.roles
+        profile_required: false
+        strategy_overrides:
+          oidc:
+            scim_mapping: roles
+          samlp:
+            scim_mapping: roles
+      cost_center:
+        label: Cost Center
+        description: Cost center
+        scim_mapping: urn:ietf:params:scim:schemas:extension:enterprise:2.0:User.costCenter
+        auth0_mapping: app_metadata.cost_center
+        profile_required: false
+      employee_id:
+        label: Employee ID
+        description: Employee identifier
+        scim_mapping: >-
+          urn:ietf:params:scim:schemas:extension:enterprise:2.0:User.employeeNumber
+        auth0_mapping: app_metadata.employee_id
+        profile_required: false
+      external_id:
+        label: External ID
+        description: External identifier
+        scim_mapping: externalId
+        auth0_mapping: app_metadata.external_id
+        profile_required: false
+      family_name:
+        label: Family Name
+        description: Last name
+        oidc_mapping:
+          mapping: ${context.tokenset.family_name}
+          display_name: family_name
+        saml_mapping:
+          - http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname
+        scim_mapping: name.familyName
+        auth0_mapping: family_name
+        profile_required: false
+      groups_saml:
+        label: User's groups
+        description: User's groups
+        saml_mapping:
+          - http://schemas.xmlsoap.org/claims/Group
+        auth0_mapping: groups_saml
+        profile_required: false
+      postal_code:
+        label: Postal Code
+        description: Postal code
+        scim_mapping: addresses[type eq "work"].postalCode
+        auth0_mapping: app_metadata.postal_code
+        profile_required: false
+      profile_url:
+        label: Profile URL
+        description: Profile URL
+        scim_mapping: profileUrl
+        auth0_mapping: app_metadata.profile_url
+        profile_required: false
+      entitlements:
+        label: Entitlements
+        description: User entitlements
+        auth0_mapping: app_metadata.entitlements
+        profile_required: false
+        strategy_overrides:
+          oidc:
+            scim_mapping: entitlements
+          samlp:
+            scim_mapping: entitlements
+      organization:
+        label: Organization
+        description: Organization
+        scim_mapping: >-
+          urn:ietf:params:scim:schemas:extension:enterprise:2.0:User.organization
+        auth0_mapping: app_metadata.organization
+        profile_required: false
+      phone_number:
+        label: Mobile Phone Number
+        description: Mobile phone number
+        oidc_mapping:
+          mapping: ${context.tokenset.phone_number}
+          display_name: phone_number
+        saml_mapping:
+          - http://schemas.xmlsoap.org/ws/2005/05/identity/claims/mobilephone
+          - http://schemas.xmlsoap.org/ws/2005/05/identity/claims/homephone
+          - http://schemas.xmlsoap.org/ws/2005/05/identity/claims/otherphone
+        auth0_mapping: phone_number
+        profile_required: false
+      timezone_oidc:
+        label: Timezone
+        description: User timezone
+        oidc_mapping:
+          mapping: ${context.tokenset.zoneinfo}
+          display_name: zoneinfo
+        auth0_mapping: timezone
+        profile_required: false
+      timezone_scim:
+        label: Timezone
+        description: User timezone
+        scim_mapping: timezone
+        auth0_mapping: app_metadata.timezone
+        profile_required: false
+      email_verified:
+        label: Email verified?
+        description: Is Email verified?
+        oidc_mapping:
+          mapping: ${context.tokenset.email_verified}
+          display_name: email_verified
+        auth0_mapping: email_verified
+        profile_required: false
+      postal_address:
+        label: Postal Address
+        description: Postal address
+        scim_mapping: addresses[type eq "work"].formatted
+        auth0_mapping: app_metadata.postal_address
+        profile_required: false
+      street_address:
+        label: Street Address
+        description: Street address
+        scim_mapping: addresses[type eq "work"].streetAddress
+        auth0_mapping: app_metadata.street_address
+        profile_required: false
+      federated_groups:
+        label: Federated groups
+        description: Federated groups
+        auth0_mapping: federated_groups
+        profile_required: false
+        strategy_overrides:
+          okta:
+            oidc_mapping:
+              mapping: ${context.userinfo.groups}
+              display_name: groups
+      federated_locale:
+        label: Federated locale
+        description: Federated locale
+        auth0_mapping: federated_locale
+        profile_required: false
+        strategy_overrides:
+          okta:
+            oidc_mapping:
+              mapping: ${context.userinfo.locale}
+              display_name: locale
+      honorific_prefix:
+        label: Honorific Prefix
+        description: Honorific prefix
+        auth0_mapping: app_metadata.honorific_prefix
+        profile_required: false
+        strategy_overrides:
+          okta:
+            scim_mapping: name.honorificPrefix
+      honorific_suffix:
+        label: Honorific Suffix
+        description: Honorific suffix
+        auth0_mapping: app_metadata.honorific_suffix
+        profile_required: false
+        strategy_overrides:
+          okta:
+            scim_mapping: name.honorificSuffix
+      middle_name_oidc:
+        label: Middle Name
+        description: Middle name
+        oidc_mapping:
+          mapping: ${context.tokenset.middle_name}
+          display_name: middle_name
+        auth0_mapping: middle_name
+        profile_required: false
+      middle_name_scim:
+        label: Middle Name
+        description: Middle name
+        auth0_mapping: app_metadata.middle_name
+        profile_required: false
+        strategy_overrides:
+          okta:
+            scim_mapping: name.middleName
+      home_phone_number:
+        label: Home Phone Number
+        description: Home phone number
+        auth0_mapping: app_metadata.home_phone_number
+        profile_required: false
+        strategy_overrides:
+          oidc:
+            scim_mapping: phoneNumbers[type eq "home"].value
+          samlp:
+            scim_mapping: phoneNumbers[type eq "home"].value
+      work_phone_number:
+        label: Work Phone Number
+        description: Work phone number
+        auth0_mapping: app_metadata.work_phone_number
+        profile_required: false
+        strategy_overrides:
+          oidc:
+            scim_mapping: phoneNumbers[type eq "work"].value
+          waad:
+            scim_mapping: phoneNumbers[type eq "work"].value
+          samlp:
+            scim_mapping: phoneNumbers[type eq "work"].value
+      federated_zoneinfo:
+        label: Federated zone info
+        description: Federated zone info
+        auth0_mapping: federated_zoneinfo
+        profile_required: false
+        strategy_overrides:
+          okta:
+            oidc_mapping:
+              mapping: ${context.userinfo.zoneinfo}
+      preferred_username:
+        label: Preferred username
+        description: Preferred username
+        oidc_mapping:
+          mapping: ${context.tokenset.preferred_username}
+          display_name: preferred_username
+        auth0_mapping: preferred_username
+        profile_required: false
+        strategy_overrides:
+          oidc:
+            scim_mapping: userName
+          okta:
+            scim_mapping: userName
+      primary_phone_number:
+        label: Primary Phone Number
+        description: Primary phone number
+        auth0_mapping: app_metadata.primary_phone_number
+        profile_required: false
+        strategy_overrides:
+          okta:
+            scim_mapping: phoneNumbers[primary eq true].value
+      mobile_phone_number_scim:
+        label: Mobile Phone Number
+        description: Mobile phone number
+        scim_mapping: phoneNumbers[type eq "mobile"].value
+        auth0_mapping: app_metadata.mobile_phone_number
+        profile_required: false
+    user_id:
+      oidc_mapping: sub
+      saml_mapping:
+        - http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier
+        - http://schemas.xmlsoap.org/ws/2005/05/identity/claims/upn
+        - http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name
+      scim_mapping: externalId
+      strategy_overrides:
+        waad:
+          oidc_mapping: oid
+        samlp:
+          scim_mapping: userName
+        google-apps:
+          oidc_mapping: email
+connectionProfiles:
+  - name: Default Connection Profile
+    connection_config: null
+    connection_name_prefix_template: ec-{org_id}-
+    enabled_features:
+      - scim
+      - universal_logout
+    organization:
+      show_as_button: none
+      assign_membership_on_login: none
+    strategy_overrides: null
+tokenExchangeProfiles: []
+supplementalSignals:
+  akamai_enabled: false
