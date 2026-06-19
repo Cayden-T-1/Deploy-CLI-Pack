@@ -1,7 +1,7 @@
 {
-  "AUTH0_DOMAIN": "dev-nbsatrzqnfxe6wuu.us.auth0.com",
-  "AUTH0_CLIENT_ID": "7xX9xISPYoOrU1iSIoud8ZZM9mUY1FDK",
-  "AUTH0_CLIENT_SECRET": "p3zwM_Nenh_LI84ydQ33PgPd-51L6onF6gp1XJ-cyGCOXpvB_dZEe8oBq6QO9cn2",
+  "AUTH0_DOMAIN": "",
+  "AUTH0_CLIENT_ID": "",
+  "AUTH0_CLIENT_SECRET": "",
   "AUTH0_ALLOW_DELETE": false,
   "AUTH0_EXCLUDED_RULES": [],
   "AUTH0_EXCLUDED_CLIENTS": [],
