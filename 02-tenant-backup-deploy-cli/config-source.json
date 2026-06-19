@@ -1,0 +1,9 @@
+{
+  "AUTH0_DOMAIN": "dev-24uc0lfu7st66b7k.us.auth0.com",
+  "AUTH0_CLIENT_ID": "jJ99aj2pBhkBjUQrcbbskZeLlYjTUGUk",
+  "AUTH0_CLIENT_SECRET": "sk-kJzOGwZoqqC3fDjQttvXl_V_4LlKbNFlEiMTF-VmM_moO_XA3emqVJduMCC2H",
+  "AUTH0_ALLOW_DELETE": false,
+  "AUTH0_EXCLUDED_RULES": [],
+  "AUTH0_EXCLUDED_CLIENTS": [],
+  "AUTH0_EXCLUDED_CONNECTIONS": []
+}

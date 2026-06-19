@@ -1,0 +1,991 @@
+rules: []
+rulesConfigs: []
+pages: []
+resourceServers:
+  - name: Custom Login Broker API
+    identifier: https://custom-login-broker-api
+    allow_offline_access: false
+    signing_alg: RS256
+    skip_consent_for_verifiable_first_party_clients: true
+    subject_type_authorization:
+      user:
+        policy: require_client_grant
+      client:
+        policy: require_client_grant
+    token_dialect: access_token
+    token_lifetime: 86400
+    token_lifetime_for_web: 7200
+  - name: Tenant A Demo API
+    identifier: https://api.tenant-a.example.com
+    allow_offline_access: false
+    signing_alg: RS256
+    skip_consent_for_verifiable_first_party_clients: true
+    subject_type_authorization:
+      user:
+        policy: require_client_grant
+      client:
+        policy: require_client_grant
+    token_dialect: access_token
+    token_lifetime: 86400
+    token_lifetime_for_web: 7200
+clients:
+  - name: Application Manager Test 2
+    allowed_logout_urls:
+      - http://localhost:3000
+    app_type: non_interactive
+    callbacks:
+      - http://localhost:3000/callback
+    cross_origin_authentication: false
+    custom_login_page_on: true
+    description: >+
+      This application was created through the management API, and this
+      description was written with the Application Manager script
+
+    grant_types:
+      - authorization_code
+      - implicit
+      - refresh_token
+      - client_credentials
+    is_first_party: true
+    is_token_endpoint_ip_header_trusted: false
+    jwt_configuration:
+      lifetime_in_seconds: 36000
+      secret_encoded: false
+    oidc_conformant: false
+    refresh_token:
+      expiration_type: non-expiring
+      leeway: 0
+      infinite_token_lifetime: true
+      infinite_idle_token_lifetime: true
+      token_lifetime: 2592000
+      idle_token_lifetime: 1296000
+      rotation_type: non-rotating
+    sso_disabled: false
+    web_origins:
+      - http://localhost:3000
+  - name: Application Manager Test Edit
+    allowed_logout_urls:
+      - http://localhost:3000
+    app_type: regular_web
+    callbacks:
+      - http://localhost:3000/callback
+    cross_origin_authentication: false
+    custom_login_page_on: true
+    grant_types:
+      - authorization_code
+      - implicit
+      - refresh_token
+      - client_credentials
+    is_first_party: true
+    is_token_endpoint_ip_header_trusted: false
+    jwt_configuration:
+      lifetime_in_seconds: 36000
+      secret_encoded: false
+    oidc_conformant: false
+    refresh_token:
+      expiration_type: non-expiring
+      leeway: 0
+      infinite_token_lifetime: true
+      infinite_idle_token_lifetime: true
+      token_lifetime: 2592000
+      idle_token_lifetime: 1296000
+      rotation_type: non-rotating
+    sso_disabled: false
+    web_origins:
+      - http://localhost:3000
+  - name: Custom Login Broker API (Test Application)
+    app_type: non_interactive
+    cross_origin_authentication: false
+    custom_login_page_on: true
+    grant_types:
+      - client_credentials
+    is_first_party: true
+    is_token_endpoint_ip_header_trusted: false
+    jwt_configuration:
+      alg: RS256
+      lifetime_in_seconds: 36000
+      secret_encoded: false
+    oidc_conformant: true
+    refresh_token:
+      expiration_type: non-expiring
+      leeway: 0
+      infinite_token_lifetime: true
+      infinite_idle_token_lifetime: true
+      token_lifetime: 31557600
+      idle_token_lifetime: 2592000
+      rotation_type: non-rotating
+    sso_disabled: false
+    token_endpoint_auth_method: client_secret_post
+  - name: Custom Login Broker Backend DEV
+    allowed_clients: []
+    app_type: regular_web
+    callbacks: []
+    client_aliases: []
+    cross_origin_authentication: false
+    custom_login_page_on: true
+    grant_types:
+      - authorization_code
+      - refresh_token
+      - client_credentials
+      - password
+      - http://auth0.com/oauth/grant-type/password-realm
+    is_first_party: true
+    is_token_endpoint_ip_header_trusted: false
+    jwt_configuration:
+      alg: RS256
+      lifetime_in_seconds: 36000
+      secret_encoded: false
+    native_social_login:
+      apple:
+        enabled: false
+      facebook:
+        enabled: false
+    oidc_conformant: true
+    refresh_token:
+      expiration_type: non-expiring
+      leeway: 0
+      infinite_token_lifetime: true
+      infinite_idle_token_lifetime: true
+      token_lifetime: 31557600
+      idle_token_lifetime: 2592000
+      rotation_type: non-rotating
+    sso: true
+    sso_disabled: false
+    token_endpoint_auth_method: client_secret_post
+    token_exchange:
+      allow_any_profile_of_type:
+        - custom_authentication
+  - name: Default App
+    callbacks: []
+    cross_origin_authentication: false
+    custom_login_page_on: true
+    grant_types:
+      - authorization_code
+      - implicit
+      - refresh_token
+      - client_credentials
+    is_first_party: true
+    is_token_endpoint_ip_header_trusted: false
+    jwt_configuration:
+      alg: RS256
+      lifetime_in_seconds: 36000
+      secret_encoded: false
+    oidc_conformant: true
+    refresh_token:
+      expiration_type: non-expiring
+      leeway: 0
+      infinite_token_lifetime: true
+      infinite_idle_token_lifetime: true
+      token_lifetime: 2592000
+      idle_token_lifetime: 1296000
+      rotation_type: non-rotating
+    sso_disabled: false
+  - name: Management API Test
+    app_type: non_interactive
+    cross_origin_authentication: false
+    custom_login_page_on: true
+    grant_types:
+      - client_credentials
+    is_first_party: true
+    is_token_endpoint_ip_header_trusted: false
+    jwt_configuration:
+      alg: RS256
+      lifetime_in_seconds: 36000
+      secret_encoded: false
+    oidc_conformant: true
+    refresh_token:
+      expiration_type: non-expiring
+      leeway: 0
+      infinite_token_lifetime: true
+      infinite_idle_token_lifetime: true
+      token_lifetime: 31557600
+      idle_token_lifetime: 2592000
+      rotation_type: non-rotating
+    sso_disabled: false
+    token_endpoint_auth_method: client_secret_post
+  - name: Tenant A
+    allowed_clients: []
+    allowed_logout_urls:
+      - http://localhost:3000/
+      - https://dev-dfzgi0rvvaxyvicy.us.auth0.com
+      - https://dev-dfzgi0rvvaxyvicy.us.auth0.com/login/callback
+      - https://dev-6htrip8tspmarfgm.us.auth0.com/login/callback
+    app_type: regular_web
+    async_approval_notification_channels:
+      - guardian-push
+    callbacks:
+      - http://localhost:3000/callback
+      - https://dev-dfzgi0rvvaxyvicy.us.auth0.com
+      - https://dev-dfzgi0rvvaxyvicy.us.auth0.com/login/callback
+      - https://dev-6htrip8tspmarfgm.us.auth0.com/login/callback
+    client_aliases: []
+    cross_origin_authentication: false
+    custom_login_page_on: true
+    grant_types:
+      - refresh_token
+      - client_credentials
+      - password
+      - http://auth0.com/oauth/grant-type/password-realm
+      - authorization_code
+    is_first_party: true
+    is_token_endpoint_ip_header_trusted: false
+    jwt_configuration:
+      alg: RS256
+      lifetime_in_seconds: 36000
+      secret_encoded: false
+    native_social_login:
+      apple:
+        enabled: false
+      facebook:
+        enabled: false
+    oidc_conformant: true
+    refresh_token:
+      expiration_type: non-expiring
+      leeway: 0
+      infinite_token_lifetime: true
+      infinite_idle_token_lifetime: true
+      token_lifetime: 31557600
+      idle_token_lifetime: 2592000
+      rotation_type: non-rotating
+    skip_non_verifiable_callback_uri_confirmation_prompt: true
+    sso: true
+    sso_disabled: false
+    token_endpoint_auth_method: client_secret_post
+  - name: Tenant A Demo API (Test Application)
+    app_type: non_interactive
+    cross_origin_authentication: false
+    custom_login_page_on: true
+    grant_types:
+      - client_credentials
+    is_first_party: true
+    is_token_endpoint_ip_header_trusted: false
+    jwt_configuration:
+      alg: RS256
+      lifetime_in_seconds: 36000
+      secret_encoded: false
+    oidc_conformant: true
+    refresh_token:
+      expiration_type: non-expiring
+      leeway: 0
+      infinite_token_lifetime: true
+      infinite_idle_token_lifetime: true
+      token_lifetime: 31557600
+      idle_token_lifetime: 2592000
+      rotation_type: non-rotating
+    sso_disabled: false
+    token_endpoint_auth_method: client_secret_post
+  - name: Tenant B
+    allowed_clients: []
+    app_type: regular_web
+    callbacks: []
+    client_aliases: []
+    cross_origin_authentication: false
+    custom_login_page_on: true
+    grant_types:
+      - refresh_token
+      - password
+      - http://auth0.com/oauth/grant-type/password-realm
+      - client_credentials
+    is_first_party: true
+    is_token_endpoint_ip_header_trusted: false
+    jwt_configuration:
+      alg: RS256
+      lifetime_in_seconds: 36000
+      secret_encoded: false
+    native_social_login:
+      apple:
+        enabled: false
+      facebook:
+        enabled: false
+    oidc_conformant: true
+    refresh_token:
+      expiration_type: non-expiring
+      leeway: 0
+      infinite_token_lifetime: true
+      infinite_idle_token_lifetime: true
+      token_lifetime: 31557600
+      idle_token_lifetime: 2592000
+      rotation_type: non-rotating
+    sso: true
+    sso_disabled: false
+    token_endpoint_auth_method: client_secret_post
+  - name: Tenant Deploy CLI
+    app_type: non_interactive
+    cross_origin_authentication: false
+    custom_login_page_on: true
+    grant_types:
+      - client_credentials
+    is_first_party: true
+    is_token_endpoint_ip_header_trusted: false
+    jwt_configuration:
+      alg: RS256
+      lifetime_in_seconds: 36000
+      secret_encoded: false
+    oidc_conformant: true
+    refresh_token:
+      expiration_type: non-expiring
+      leeway: 0
+      infinite_token_lifetime: true
+      infinite_idle_token_lifetime: true
+      token_lifetime: 31557600
+      idle_token_lifetime: 2592000
+      rotation_type: non-rotating
+    sso_disabled: false
+    token_endpoint_auth_method: client_secret_post
+databases:
+  - name: Username-Password-Authentication
+    strategy: auth0
+    authentication:
+      active: true
+    connected_accounts:
+      active: false
+    enabled_clients:
+      - Application Manager Test 2
+      - Application Manager Test Edit
+      - Custom Login Broker API (Test Application)
+      - Custom Login Broker Backend DEV
+      - Default App
+      - Management API Test
+      - Tenant A
+      - Tenant A Demo API (Test Application)
+      - Tenant B
+      - Tenant Deploy CLI
+    is_domain_connection: false
+    options:
+      mfa:
+        active: true
+        return_enroll_settings: true
+      passwordPolicy: good
+      passkey_options:
+        challenge_ui: both
+        local_enrollment_enabled: true
+        progressive_enrollment_enabled: true
+      strategy_version: 2
+      authentication_methods:
+        passkey:
+          enabled: false
+        password:
+          enabled: true
+      brute_force_protection: true
+    realms:
+      - Username-Password-Authentication
+connections:
+  - name: facebook
+    strategy: facebook
+    authentication:
+      active: true
+    connected_accounts:
+      active: false
+    enabled_clients:
+      - Application Manager Test 2
+      - Application Manager Test Edit
+      - Custom Login Broker API (Test Application)
+      - Custom Login Broker Backend DEV
+      - Management API Test
+      - Tenant A
+      - Tenant A Demo API (Test Application)
+      - Tenant B
+      - Tenant Deploy CLI
+    is_domain_connection: false
+    options:
+      email: false
+      scope: public_profile
+      ads_read: false
+      client_id: ''
+      user_link: false
+      user_likes: false
+      user_posts: false
+      read_stream: false
+      user_events: false
+      user_gender: false
+      user_groups: false
+      user_photos: false
+      user_status: false
+      user_videos: false
+      manage_pages: false
+      read_mailbox: false
+      user_friends: false
+      publish_pages: false
+      publish_video: false
+      read_insights: false
+      user_birthday: false
+      user_hometown: false
+      user_location: false
+      ads_management: false
+      public_profile: true
+      user_age_range: false
+      leads_retrieval: false
+      pages_messaging: false
+      pages_show_list: false
+      publish_actions: false
+      pages_manage_cta: false
+      publish_to_groups: false
+      user_tagged_places: false
+      business_management: false
+      read_page_mailboxes: false
+      user_managed_groups: false
+      manage_notifications: false
+      groups_access_member_info: false
+      allow_context_profile_field: false
+      pages_messaging_phone_number: false
+      pages_manage_instant_articles: false
+      pages_messaging_subscriptions: false
+      read_audience_network_insights: false
+  - name: google-oauth2
+    strategy: google-oauth2
+    authentication:
+      active: true
+    connected_accounts:
+      active: false
+    enabled_clients:
+      - Application Manager Test 2
+      - Application Manager Test Edit
+      - Custom Login Broker API (Test Application)
+      - Custom Login Broker Backend DEV
+      - Default App
+      - Management API Test
+      - Tenant A
+      - Tenant A Demo API (Test Application)
+      - Tenant B
+      - Tenant Deploy CLI
+    is_domain_connection: false
+    options:
+      email: true
+      scope:
+        - email
+        - profile
+      profile: true
+tenant:
+  client_id_metadata_document_supported: false
+  enabled_locales:
+    - en
+  flags:
+    revoke_refresh_token_grant: false
+    disable_clickjack_protection_headers: false
+  oidc_logout:
+    rp_logout_end_session_endpoint_discovery: true
+  resource_parameter_profile: compatibility
+  sandbox_version: '22'
+emailProvider: {}
+emailTemplates: []
+clientGrants:
+  - client_id: Custom Login Broker API (Test Application)
+    audience: https://dev-24uc0lfu7st66b7k.us.auth0.com/api/v2/
+    scope: []
+    subject_type: user
+  - client_id: Custom Login Broker API (Test Application)
+    audience: https://dev-24uc0lfu7st66b7k.us.auth0.com/api/v2/
+    scope:
+      - read:clients
+      - update:clients
+      - read:client_keys
+      - read:client_credentials
+      - create:token_exchange_profiles
+      - read:token_exchange_profiles
+      - update:token_exchange_profiles
+      - delete:token_exchange_profiles
+    subject_type: client
+  - client_id: Custom Login Broker API (Test Application)
+    audience: https://custom-login-broker-api
+    scope: []
+    subject_type: client
+  - client_id: Custom Login Broker Backend DEV
+    audience: https://custom-login-broker-api
+    allow_all_scopes: false
+    scope: []
+    subject_type: client
+  - client_id: Custom Login Broker Backend DEV
+    audience: https://custom-login-broker-api
+    allow_all_scopes: false
+    scope: []
+    subject_type: user
+  - client_id: Custom Login Broker Backend DEV
+    audience: https://dev-24uc0lfu7st66b7k.us.auth0.com/api/v2/
+    scope:
+      - read:clients
+      - read:client_keys
+      - read:client_credentials
+      - read:client_grants
+    subject_type: client
+  - client_id: Management API Test
+    audience: https://dev-24uc0lfu7st66b7k.us.auth0.com/api/v2/
+    scope:
+      - read:users
+      - update:users
+      - delete:users
+      - create:users
+    subject_type: client
+  - client_id: Tenant A
+    audience: https://dev-24uc0lfu7st66b7k.us.auth0.com/api/v2/
+    scope:
+      - read:client_grants
+      - create:client_grants
+      - delete:client_grants
+      - update:client_grants
+      - read:users
+      - update:users
+      - delete:users
+      - create:users
+      - read:users_app_metadata
+      - update:users_app_metadata
+      - delete:users_app_metadata
+      - create:users_app_metadata
+      - read:user_custom_blocks
+      - create:user_custom_blocks
+      - delete:user_custom_blocks
+      - create:user_tickets
+      - read:clients
+      - update:clients
+      - delete:clients
+      - create:clients
+      - read:client_keys
+      - update:client_keys
+      - delete:client_keys
+      - create:client_keys
+      - read:client_credentials
+      - update:client_credentials
+      - delete:client_credentials
+      - create:client_credentials
+      - read:connections
+      - update:connections
+      - delete:connections
+      - create:connections
+      - read:resource_servers
+      - update:resource_servers
+      - delete:resource_servers
+      - create:resource_servers
+      - read:device_credentials
+      - update:device_credentials
+      - delete:device_credentials
+      - create:device_credentials
+      - read:rules
+      - update:rules
+      - delete:rules
+      - create:rules
+      - read:rules_configs
+      - update:rules_configs
+      - delete:rules_configs
+      - read:hooks
+      - update:hooks
+      - delete:hooks
+      - create:hooks
+      - read:actions
+      - update:actions
+      - delete:actions
+      - create:actions
+      - read:email_provider
+      - update:email_provider
+      - delete:email_provider
+      - create:email_provider
+      - blacklist:tokens
+      - read:stats
+      - read:insights
+      - read:tenant_settings
+      - update:tenant_settings
+      - read:logs
+      - read:logs_users
+      - read:shields
+      - create:shields
+      - update:shields
+      - delete:shields
+      - read:anomaly_blocks
+      - delete:anomaly_blocks
+      - update:triggers
+      - read:triggers
+      - read:grants
+      - delete:grants
+      - read:guardian_factors
+      - update:guardian_factors
+      - read:guardian_enrollments
+      - delete:guardian_enrollments
+      - create:guardian_enrollment_tickets
+      - read:user_idp_tokens
+      - create:passwords_checking_job
+      - delete:passwords_checking_job
+      - read:custom_domains
+      - delete:custom_domains
+      - create:custom_domains
+      - update:custom_domains
+      - read:email_templates
+      - create:email_templates
+      - update:email_templates
+      - read:mfa_policies
+      - update:mfa_policies
+      - read:roles
+      - create:roles
+      - delete:roles
+      - update:roles
+      - read:prompts
+      - update:prompts
+      - read:branding
+      - update:branding
+      - delete:branding
+      - read:log_streams
+      - create:log_streams
+      - delete:log_streams
+      - update:log_streams
+      - create:signing_keys
+      - read:signing_keys
+      - update:signing_keys
+      - read:limits
+      - update:limits
+      - create:role_members
+      - read:role_members
+      - delete:role_members
+      - read:entitlements
+      - read:attack_protection
+      - update:attack_protection
+      - read:organizations_summary
+      - create:authentication_methods
+      - read:authentication_methods
+      - update:authentication_methods
+      - delete:authentication_methods
+      - read:organizations
+      - update:organizations
+      - create:organizations
+      - delete:organizations
+      - read:organization_discovery_domains
+      - update:organization_discovery_domains
+      - create:organization_discovery_domains
+      - delete:organization_discovery_domains
+      - create:organization_members
+      - read:organization_members
+      - delete:organization_members
+      - create:organization_connections
+      - read:organization_connections
+      - update:organization_connections
+      - delete:organization_connections
+      - create:organization_member_roles
+      - read:organization_member_roles
+      - delete:organization_member_roles
+      - create:organization_invitations
+      - read:organization_invitations
+      - delete:organization_invitations
+      - read:scim_config
+      - create:scim_config
+      - update:scim_config
+      - delete:scim_config
+      - create:scim_token
+      - read:scim_token
+      - delete:scim_token
+      - read:directory_provisionings
+      - create:directory_provisionings
+      - update:directory_provisionings
+      - delete:directory_provisionings
+      - delete:phone_providers
+      - create:phone_providers
+      - read:phone_providers
+      - update:phone_providers
+      - delete:phone_templates
+      - create:phone_templates
+      - read:phone_templates
+      - update:phone_templates
+      - create:encryption_keys
+      - read:encryption_keys
+      - update:encryption_keys
+      - delete:encryption_keys
+      - read:sessions
+      - update:sessions
+      - delete:sessions
+      - read:refresh_tokens
+      - update:refresh_tokens
+      - delete:refresh_tokens
+      - create:self_service_profiles
+      - read:self_service_profiles
+      - update:self_service_profiles
+      - delete:self_service_profiles
+      - create:sso_access_tickets
+      - delete:sso_access_tickets
+      - read:forms
+      - update:forms
+      - delete:forms
+      - create:forms
+      - read:flows
+      - update:flows
+      - delete:flows
+      - create:flows
+      - read:flows_vault
+      - read:flows_vault_connections
+      - update:flows_vault_connections
+      - delete:flows_vault_connections
+      - create:flows_vault_connections
+      - read:flows_executions
+      - delete:flows_executions
+      - read:connections_options
+      - update:connections_options
+      - read:self_service_profile_custom_texts
+      - update:self_service_profile_custom_texts
+      - create:network_acls
+      - update:network_acls
+      - read:network_acls
+      - delete:network_acls
+      - delete:vdcs_templates
+      - read:vdcs_templates
+      - create:vdcs_templates
+      - update:vdcs_templates
+      - create:custom_signing_keys
+      - read:custom_signing_keys
+      - update:custom_signing_keys
+      - delete:custom_signing_keys
+      - read:federated_connections_tokens
+      - delete:federated_connections_tokens
+      - create:user_attribute_profiles
+      - read:user_attribute_profiles
+      - update:user_attribute_profiles
+      - delete:user_attribute_profiles
+      - read:event_streams
+      - create:event_streams
+      - delete:event_streams
+      - update:event_streams
+      - read:event_deliveries
+      - update:event_deliveries
+      - create:connection_profiles
+      - read:connection_profiles
+      - update:connection_profiles
+      - delete:connection_profiles
+      - create:group_roles
+      - delete:group_roles
+      - read:user_effective_permissions
+      - read:user_effective_roles
+      - read:organization_member_effective_roles
+      - read:user_role_source_groups
+      - read:organization_member_role_source_groups
+      - read:user_permission_source_roles
+      - read:group_roles
+      - read:organization_groups
+      - create:organization_groups
+      - delete:organization_groups
+      - read:organization_group_roles
+      - create:organization_group_roles
+      - delete:organization_group_roles
+      - create:token_exchange_profiles
+      - read:token_exchange_profiles
+      - update:token_exchange_profiles
+      - delete:token_exchange_profiles
+      - read:organization_client_grants
+      - create:organization_client_grants
+      - delete:organization_client_grants
+      - read:events
+      - read:security_metrics
+      - read:connections_keys
+      - update:connections_keys
+      - create:connections_keys
+    subject_type: client
+  - client_id: Tenant A
+    audience: https://dev-24uc0lfu7st66b7k.us.auth0.com/api/v2/
+    scope: []
+    subject_type: user
+  - client_id: Tenant A Demo API (Test Application)
+    audience: https://dev-24uc0lfu7st66b7k.us.auth0.com/api/v2/
+    scope:
+      - read:current_user
+      - update:current_user_metadata
+    subject_type: user
+  - client_id: Tenant A Demo API (Test Application)
+    audience: https://api.tenant-a.example.com
+    scope: []
+    subject_type: client
+  - client_id: Tenant A Demo API (Test Application)
+    audience: https://dev-24uc0lfu7st66b7k.us.auth0.com/api/v2/
+    scope:
+      - create:client_grants
+      - read:users
+      - update:users
+      - read:clients
+      - update:clients
+      - create:clients
+      - delete:clients
+    subject_type: client
+guardianFactors:
+  - name: duo
+    enabled: false
+  - name: email
+    enabled: false
+  - name: otp
+    enabled: false
+  - name: push-notification
+    enabled: false
+  - name: recovery-code
+    enabled: false
+  - name: sms
+    enabled: false
+  - name: webauthn-platform
+    enabled: false
+  - name: webauthn-roaming
+    enabled: false
+guardianPolicies:
+  policies: []
+guardianPhoneFactorMessageTypes:
+  message_types: []
+roles: []
+branding:
+  templates: []
+phoneProviders: []
+phoneTemplates:
+  - content:
+      syntax: liquid
+      body:
+        text: >-
+          We detected suspicious activity on your account from the ip
+          {{user.source_ip}}{% if user.city %} from {{user.city}},
+          {{user.country}}{% elsif user.country %} from {{user.country}}{% endif
+          %}. Logins from this IP have been blocked on your account. If this is
+          your IP, please reset your password to unblock your account.
+          Otherwise, disregard this message.
+        voice: >-
+          We detected suspicious activity on your account from the ip
+          {{user.source_ip}}{% if user.city %} from {{user.city}},
+          {{user.country}}{% elsif user.country %} from {{user.country}}{% endif
+          %}. Logins from this IP have been blocked on your account. If this is
+          your IP, please reset your password to unblock your account.
+          Otherwise, disregard this message.
+      from: ''
+    disabled: false
+    type: blocked_account
+  - content:
+      syntax: liquid
+      body:
+        text: >-
+          {{ code | escape }} is your password change code for {{ friendly_name
+          | escape }}
+        voice: >-
+          Hello. Your password change code for {{ friendly_name | escape }} is
+          {{ pause }} {{ code | escape }}. I repeat, your password change code
+          is {{ pause }} {{ code | escape }}
+      from: ''
+    disabled: false
+    type: change_password
+  - content:
+      syntax: liquid
+      body:
+        text: >-
+          {{ code | escape }} is your verification code for {{ friendly_name |
+          escape }}. Please enter this code to verify your enrollment.
+        voice: >-
+          Hello. Your verification code for {{ friendly_name | escape }} is {{
+          pause }} {{ code | escape }}. I repeat, your verification code is {{
+          pause }} {{ code | escape }}
+      from: ''
+    disabled: false
+    type: otp_enroll
+  - content:
+      syntax: liquid
+      body:
+        text: >-
+          {{ code | escape }} is your verification code for {{ friendly_name |
+          escape }}
+        voice: >-
+          Hello. Your verification code for {{ friendly_name | escape }} is {{
+          pause }} {{ code | escape }}. I repeat, your verification code is {{
+          pause }} {{ code | escape }}
+      from: ''
+    disabled: false
+    type: otp_verify
+prompts:
+  customText: {}
+  partials: {}
+  universal_login_experience: new
+actions:
+  - name: Custom Phone Provider
+    code: ./actions/Custom Phone Provider/code.js
+    dependencies: []
+    deployed: false
+    runtime: node22
+    secrets: []
+    status: built
+    supported_triggers:
+      - id: custom-phone-provider
+        version: v1
+  - name: Passkey Custom Token Exchange
+    code: ./actions/Passkey Custom Token Exchange/code.js
+    dependencies: []
+    deployed: true
+    runtime: node22
+    secrets:
+      - name: PASSKEY_ASSERTION_SECRET
+      - name: PASSKEY_ASSERTION_ISSUER
+      - name: PASSKEY_ASSERTION_AUDIENCE
+    status: built
+    supported_triggers:
+      - id: custom-token-exchange
+        version: v1
+triggers: {}
+organizations: []
+attackProtection:
+  botDetection:
+    challenge_password_policy: never
+    challenge_passwordless_policy: never
+    challenge_password_reset_policy: never
+    allowlist: []
+    bot_detection_level: medium
+    monitoring_mode_enabled: false
+  breachedPasswordDetection:
+    enabled: false
+    shields: []
+    admin_notification_frequency: []
+    method: standard
+    stage:
+      pre-user-registration:
+        shields: []
+      pre-change-password:
+        shields: []
+  bruteForceProtection:
+    enabled: true
+    shields:
+      - block
+      - user_notification
+    mode: count_per_identifier_and_ip
+    allowlist: []
+    max_attempts: 10
+  captcha:
+    active_provider_id: auth_challenge
+    simple_captcha: {}
+    auth_challenge:
+      fail_open: false
+    recaptcha_v2:
+      site_key: ''
+      secret: '##CAPTCHA_RECAPTCHA_V2_SECRET##'
+    recaptcha_enterprise:
+      site_key: ''
+      project_id: '##CAPTCHA_RECAPTCHA_ENTERPRISE_PROJECT_ID##'
+      api_key: '##CAPTCHA_RECAPTCHA_ENTERPRISE_API_KEY##'
+    hcaptcha:
+      site_key: ''
+      secret: '##CAPTCHA_HCAPTCHA_SECRET##'
+    friendly_captcha:
+      site_key: ''
+      secret: '##CAPTCHA_FRIENDLY_CAPTCHA_SECRET##'
+    arkose:
+      site_key: ''
+      client_subdomain: client-api
+      verify_subdomain: verify-api
+      fail_open: false
+      secret: '##CAPTCHA_ARKOSE_SECRET##'
+  suspiciousIpThrottling:
+    enabled: true
+    shields:
+      - admin_notification
+      - block
+    allowlist: []
+    stage:
+      pre-login:
+        max_attempts: 100
+        rate: 864000
+      pre-user-registration:
+        max_attempts: 50
+        rate: 1200
+riskAssessment:
+  new_device:
+    remember_for: 30
+  settings:
+    enabled: false
+logStreams: []
+customDomains: []
+themes: []
+forms: []
+flows: []
+flowVaultConnections: []
+selfServiceProfiles: []
+userAttributeProfiles: []
+connectionProfiles: []
+tokenExchangeProfiles: []
