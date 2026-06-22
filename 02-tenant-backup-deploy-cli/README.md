@@ -21,7 +21,7 @@ Auth0 Deploy CLI can manage tenant configuration resources such as Actions, bran
 1. Set up Auth0 Deploy CLI with a dedicated Machine-to-Machine application.
 2. Fill in `config-source.json` and `config-target.json` with tenant-specific values.
 3. Change config to target using `cp config-target.json config.json` and run `./export-tenant.sh` before making changes.
-4. Commit the export to Git and tag it with the backup naming convention using `git add .` and `git commit -m "Backup target Auth0 tenant before config transfer"`
+4. Commit and push the export to Git and tag it with the backup naming convention using `git add .` then `git commit -m "Backup target Auth0 tenant before config transfer"` then `git push`
 5. Run `config-source.json` and perform steps 3 and 4 again.
 6. Review tenant configuration diffs before importing.
 7. Run `cp config-target.json config.json` and perform a dry run using `a0deploy import --config_file ./config.json --input_file ./exports/YOUR-SOURCE-EXPORT-FOLDER/tenant.yaml --dry-run`
