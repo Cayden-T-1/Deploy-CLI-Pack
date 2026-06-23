@@ -1,4 +1,4 @@
-
+# Local Auth0 Deploy CLI credential files
 config.json
 config-source.json
 config-target.json
@@ -6,12 +6,21 @@ config-*.json
 *.local.json
 *.secret.json
 
-
+# Environment variable files
 .env
 .env.*
 
-
+# Keep the safe example config
 !config-example.json
 
+# Auth0 Deploy CLI local output / exports
+exports/
+*.yaml
+*.yml
 
+# Evidence files that may contain screenshots, command output, or tenant details
+evidence/*
+!evidence/.gitkeep
+
+# Mac/system noise
 .DS_Store
